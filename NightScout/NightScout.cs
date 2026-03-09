@@ -3,8 +3,8 @@ using NightScout.Services;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
-namespace NightScout
-{
+namespace NightScout;
+
     public partial class NightScout : Form
     {
         private readonly NightscoutService _nightscoutService;
@@ -158,4 +158,3 @@ namespace NightScout
             base.Dispose(disposing);
         }
     }
-}
