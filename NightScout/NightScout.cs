@@ -21,7 +21,7 @@ public partial class NightScout : Form
 		// Set up timer to fetch data every minute
 		_timer = new System.Windows.Forms.Timer
 		{
-			Interval = (int)TimeSpan.FromMinutes(1).TotalSeconds
+			Interval = (int)TimeSpan.FromMinutes(1).TotalMilliseconds
 		};
 		_timer.Tick += TimerTickAsync;
 		_timer.Start();
