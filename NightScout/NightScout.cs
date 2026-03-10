@@ -21,16 +21,16 @@ public partial class NightScout : Form
 		// Set up timer to fetch data every minute
 		_timer = new System.Windows.Forms.Timer
 		{
-			Interval = 60000 // 60 seconds
+			Interval = (int)TimeSpan.FromMinutes(1).TotalSeconds
 		};
-		_timer.Tick += Timer_Tick;
+		_timer.Tick += TimerTickAsync;
 		_timer.Start();
 
 		// Initial fetch
 		_ = FetchGlucoseDataAsync();
 	}
 
-	private async void Timer_Tick(object? sender, EventArgs e)
+	private async void TimerTickAsync(object? sender, EventArgs e)
 	{
 		await FetchGlucoseDataAsync();
 	}
@@ -65,11 +65,11 @@ public partial class NightScout : Form
 		_currentIcon = CreateGlucoseIcon(_lastReading);
 
 		// Force icon update by setting to null first, then to new icon
-		this.Icon = null;
-		this.Icon = _currentIcon;
+		Icon = null;
+		Icon = _currentIcon;
 
 		// Force refresh of the taskbar icon
-		this.Refresh();
+		Refresh();
 		Application.DoEvents();
 	}
 
@@ -78,7 +78,7 @@ public partial class NightScout : Form
 		if (_lastReading == null)
 			return;
 
-		this.Text = $"{_lastReading.DateTime:HH:mm} - {_lastReading.BloodGlucoseMmol} mmol/L {_lastReading.DirectionArrow}";
+		Text = $"{_lastReading.DateTime:HH:mm} - {_lastReading.BloodGlucoseMmol} mmol/L {_lastReading.DirectionArrow}";
 	}
 
 	private static Icon CreateGlucoseIcon(GlucoseReading lastReading)
@@ -140,7 +140,7 @@ public partial class NightScout : Form
 		if (timeSinceReading > TimeSpan.FromMinutes(10))
 			return Color.Black;
 
-		if (timeSinceReading > TimeSpan.FromMinutes(5))
+		if (timeSinceReading > TimeSpan.FromMinutes(6))
 			return Color.Gray;
 
 		return lastReading.BloodGlucoseMmol switch
