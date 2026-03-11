@@ -23,7 +23,7 @@ public class GlucoseReading
 
 	public double BloodGlucoseMmol => Math.Round(BloodGlucose / 18.0182, 1);
 
-	public string DeltaDirection => Delta >= 0 ? "+" : "-";
+	public string DeltaDirection => Delta >= 0 ? "+" : "";
 	public double DeltaMmol => Math.Round(Delta / 18.0182, 1);
 
 	public string DirectionArrow => Direction switch
