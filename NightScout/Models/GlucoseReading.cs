@@ -7,6 +7,9 @@ public class GlucoseReading
 	[JsonProperty("sgv")]
 	public int BloodGlucose { get; set; }
 
+	[JsonProperty("delta")]
+	public double Delta { get; set; }
+
 	[JsonProperty("direction")]
 	public string? Direction { get; set; }
 
@@ -19,6 +22,9 @@ public class GlucoseReading
 	public DateTime DateTime => DateTimeOffset.FromUnixTimeMilliseconds(Date).ToLocalTime().DateTime;
 
 	public double BloodGlucoseMmol => Math.Round(BloodGlucose / 18.0182, 1);
+
+	public string DeltaDirection => Delta >= 0 ? "+" : "-";
+	public double DeltaMmol => Math.Round(Delta / 18.0182, 1);
 
 	public string DirectionArrow => Direction switch
 	{

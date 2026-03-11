@@ -78,7 +78,7 @@ public partial class NightScout : Form
 		if (_lastReading == null)
 			return;
 
-		Text = $"{_lastReading.DateTime:HH:mm} - {_lastReading.BloodGlucoseMmol} mmol/L {_lastReading.DirectionArrow}";
+		Text = $"{_lastReading.DateTime:HH:mm} - {_lastReading.BloodGlucoseMmol} {_lastReading.DirectionArrow} ({_lastReading.DeltaDirection}{_lastReading.DeltaMmol})";
 	}
 
 	private static Icon CreateGlucoseIcon(GlucoseReading lastReading)
